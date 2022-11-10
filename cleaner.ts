@@ -12,6 +12,11 @@ function renderHTML(title: string | undefined, contentHTML: string): string {
             body {
               padding: 10px 5vw 10px 5vw;
             }
+            a {
+              color: inherit;
+              pointer-events: none;
+              text-decoration: none;
+            }
           </style>
         </head>
         <body>
