@@ -1,11 +1,16 @@
 import { Server } from "./deps.ts";
 import { cleanResponse } from "./cleaner.ts";
+import { mainPageHandler } from "./MainPageHandler.ts";
 
 const ORIGINAL_HOSTNAME = "mrakopedia.net";
 const ORIGINAL_PROTOCOL = "https:";
 const ORIGINAL_PORT = "443";
 
 async function handler(request: Request): Promise<Response> {
+  if (new URL(request.url).pathname === "/") {
+    return mainPageHandler();
+  }
+
   const newUrl = new URL(request.url);
   newUrl.hostname = ORIGINAL_HOSTNAME;
   newUrl.protocol = ORIGINAL_PROTOCOL;
