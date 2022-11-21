@@ -1,5 +1,6 @@
 import { DenoDOM } from "./deps.ts";
 import { RawHTMLPreprocessor } from "./Preprocessor.ts";
+import { downloadBarHTML, downloadButtonClass } from "./MainPageHandler.ts";
 
 function renderHTML(title: string | undefined, contentHTML: string): string {
   const titleHTML = title ? `<h1>${title}</h1>` : "";
@@ -7,19 +8,22 @@ function renderHTML(title: string | undefined, contentHTML: string): string {
       <!doctype html>
       <html>
         <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="description" value="MrakopediaReader2 - ${title}">
           <title>${title}</title>
           <style>
             body {
               padding: 10px 5vw 10px 5vw;
             }
-            a {
+            a:not(a.${downloadButtonClass}) {
               color: inherit;
               pointer-events: none;
               text-decoration: none;
             }
           </style>
         </head>
-        <body>
+        <body style="padding-top: 80px">
+          ${downloadBarHTML}
           ${titleHTML}
           ${contentHTML}
         </body>
